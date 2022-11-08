@@ -7,31 +7,7 @@ remotely from local host
 """
 
 
-
-# import paramiko
-
-# hostname = '192.168.1.237'
-# username = 'root'
-# password = 'India@123'
-
-# client = paramiko.SSHClient()
-# client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# print('client connected successfully')
-# client.connect(hostname= hostname, username=username, password=password)
-
-
-
-# stdin, stdout, stderr = client.exec_command('hostname ; hostname -i ;  uname ; uname -r ;')
-
-# list = []
-# for line in stdout:
-#     list.append( line.strip('\n'))
-
-# rec = ({ "hostname" : list[0], "host_ip" : list[1], "os" : list[2], "os_version" : list[3]})
-# print(rec)
-
-# client.close()
-
+import paramiko
 
 class RemoteAgent:
 
@@ -61,7 +37,7 @@ class RemoteAgent:
 
         """
 
-        commands = ['df -H','uname -a','hostname -i','top']
+        commands = ['df -H','uname -a','hostname -i']
 
         for command in commands:
             print(command)
@@ -71,6 +47,12 @@ class RemoteAgent:
 
 
     def close_connection(self,client):
+
+        """
+
+        It closes the established connection with remote device
+        
+        """
         client.close()
 
 
@@ -78,7 +60,7 @@ class RemoteAgent:
 
 if __name__ == "__main__":
 
-    import paramiko
+    
 
     client = paramiko.SSHClient()
 
